@@ -21,4 +21,9 @@ for meta in webMeta:
             print(meta)
 
 
+# email = soup.find_all(id=True)
+# print(email)
 
+
+for a in soup.find_all('a', href=True):
+    print ("Found the URL:", a['href'])
