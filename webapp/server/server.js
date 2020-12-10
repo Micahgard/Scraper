@@ -5,6 +5,10 @@ const cors = require('cors')
 const path = require('path')
 app.use(cors())
 
+app.get('/p/:urlstring', function(req, res) {
+    res.send("urlstring is: " + req.params.urlstring)
+})
+
 app.use(express.static('public'))
 
 app.get('*', (req, res) => {
