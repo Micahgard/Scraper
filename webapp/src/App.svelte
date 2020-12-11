@@ -1,10 +1,13 @@
 <script>
 	export let name;
+	let currentInput = '';
 
 	function handleKeydown(e){
 		console.log(e)
 		if (e.keyCode == 13){
 			e.preventDefault()
+			let currenturl = window.location.href
+			window.location.replace(currenturl + "p/" + currentInput)
 			console.log("Submitted")
 		}
 	}
@@ -15,7 +18,7 @@
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 	<p>Enter the site you wish to "crawl":</p>
 	<form>
-		<input on:submit={(e) => e.preventDefault()} on:keypress={(e) => handleKeydown(e)}/>
+		<input bind:value={currentInput} on:submit={(e) => e.preventDefault()} on:keypress={(e) => handleKeydown(e)}/>
 	</form>
 	
 </main>

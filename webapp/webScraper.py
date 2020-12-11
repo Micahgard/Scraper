@@ -11,11 +11,11 @@ def main(argv):
 
     try:
         scrapedSite = requests.get("http://" + url)
-        time.sleep(5)
+        time.sleep(3)
         data = scrapedSite.text
 
         soup = BeautifulSoup(data, 'html.parser')
-        time.sleep(5)
+        time.sleep(3)
 
         webTitle = soup.title
         webMeta = soup.find_all('meta')

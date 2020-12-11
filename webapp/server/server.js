@@ -6,13 +6,6 @@ const path = require('path')
 const { spawn } = require('child_process')
 app.use(cors())
 
-// function runScript() {
-//     console.log("in runScript")
-//     return spawn('python', ['./../webScraper.py'])
-// }
-
-// const subprocess = runScript()
-
 app.get('/p/:urlstring', function (req, res) {
     console.log("in app.get")
     const python = spawn('python3', ['webScraper.py'])
@@ -26,7 +19,6 @@ app.get('/p/:urlstring', function (req, res) {
         console.log("Closed")
     })
     res.redirect('/')
-    //res.send("urlstring is: " + req.params.urlstring)
 })
 
 app.use(express.static('public'))
