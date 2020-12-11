@@ -1,24 +1,35 @@
 from bs4 import BeautifulSoup
 
 import requests
+import sys, getopt, time
+print("in python")
 
-url = input(f"Enter a website to scrape: \n")
+def main(argv):
+    print("in main")
+    #url = input(f"Enter a website to scrape: \n")
+    url = 'html.com'
 
-scrapedSite = requests.get("http://" + url)
+    try:
+        scrapedSite = requests.get("http://" + url)
+        time.sleep(5)
+        data = scrapedSite.text
 
-data = scrapedSite.text
+        soup = BeautifulSoup(data, 'html.parser')
+        time.sleep(5)
 
-soup = BeautifulSoup(data)
+        webTitle = soup.title
+        webMeta = soup.find_all('meta')
 
-webTitle = soup.title
-webMeta = soup.find_all('meta')
+        print("Website Title: ", webTitle)
 
-print("Website Title: ", webTitle)
+        for meta in webMeta:
+            if meta.has_attr('property'):
+                if meta['property'] == 'og:description':
+                    print(meta)
+        
+        print("Ended")
+    except getopt.GetoptError:
+        sys.exit(2)
 
-for meta in webMeta:
-    if meta.has_attr('property'):
-        if meta['property'] == 'og:description':
-            print(meta)
-
-
-
+if __name__ == "__main__":
+    main(sys.argv[1:])

@@ -1,12 +1,32 @@
 const express = require('express')
 const app = express()
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 8000
 const cors = require('cors')
 const path = require('path')
+const { spawn } = require('child_process')
 app.use(cors())
 
-app.get('/p/:urlstring', function(req, res) {
-    res.send("urlstring is: " + req.params.urlstring)
+// function runScript() {
+//     console.log("in runScript")
+//     return spawn('python', ['./../webScraper.py'])
+// }
+
+// const subprocess = runScript()
+
+app.get('/p/:urlstring', function (req, res) {
+    console.log("in app.get")
+    const python = spawn('python3', ['webScraper.py'])
+    python.stdout.on('data', (data) => {
+        console.log(`data: ${data}`)
+    })
+    python.stderr.on('data', (data) => {
+        console.log(`error: ${data}`)
+    })
+    python.on('close', () => {
+        console.log("Closed")
+    })
+    res.redirect('/')
+    //res.send("urlstring is: " + req.params.urlstring)
 })
 
 app.use(express.static('public'))
@@ -16,5 +36,5 @@ app.get('*', (req, res) => {
 })
 
 app.listen(port, () => {
-        console.log(`Server is up at port ${port}`)
+    console.log(`Server is up at port ${port}`)
 })
