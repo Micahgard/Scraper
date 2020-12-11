@@ -8,7 +8,8 @@ app.use(cors())
 
 app.get('/p/:urlstring', function (req, res) {
     console.log("in app.get")
-    const python = spawn('python3', ['webScraper.py'])
+    let url = req.params.urlstring
+    const python = spawn('python3', ['webScraper.py', url])
     python.stdout.on('data', (data) => {
         console.log(`data: ${data}`)
     })

@@ -6,8 +6,7 @@ print("in python")
 
 def main(argv):
     print("in main")
-    #url = input(f"Enter a website to scrape: \n")
-    url = 'html.com'
+    url = sys.argv[1]
 
     try:
         scrapedSite = requests.get("http://" + url)
