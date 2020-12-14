@@ -7,8 +7,9 @@ const { spawn } = require('child_process')
 app.use(cors())
 
 app.get('/p/:urlstring', function (req, res) {
-    console.log("in app.get")
+    //gets name of website from params to send to python
     let url = req.params.urlstring
+    console.log("Run Python...\n")
     const python = spawn('python3', ['webScraper.py', url])
     python.stdout.on('data', (data) => {
         console.log(`data: ${data}`)
@@ -19,6 +20,7 @@ app.get('/p/:urlstring', function (req, res) {
     python.on('close', () => {
         console.log("Closed")
     })
+    //change this later to a route path
     res.redirect('/')
 })
 

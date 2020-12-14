@@ -14,7 +14,7 @@
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
+	<h1>{name}!</h1>
 	<p>Enter the site you wish to "crawl":</p>
 	<form>
 		<input bind:value={currentInput} on:submit={(e) => e.preventDefault()} on:keypress={(e) => handleKeydown(e)}/>
