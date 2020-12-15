@@ -1,9 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 # Circular import below fails
-#import runProgram
+# import runProgram
 
-def runDesc():
+def runTitle():
     
     #could potentially refactor variables to description over title as function pulls description
     url = input(f"Enter a website to scrape: \n")
@@ -23,6 +23,8 @@ def runDesc():
         if meta.has_attr('property'):
             if meta['property'] == 'og:description':
                 print(meta)
+
+    return()
     # Want to give choice to user to restart program
     #    runProgram.runChoice()
 
@@ -35,6 +37,7 @@ def runLinks():
     
     for a in soup.find_all('a', href=True):
         print ("Found the URL:", a['href'])
-
+    
+    return()
     # Want to give choice to user to restart program
     # runProgram.runChoice()
