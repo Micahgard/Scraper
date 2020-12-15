@@ -10,7 +10,7 @@ app.get('/p/:urlstring', function (req, res) {
     //gets name of website from params to send to python
     let url = req.params.urlstring
     console.log("Run Python...\n")
-    const python = spawn('python3', ['webScraper.py', url])
+    const python = spawn('python3', ['../webScraper.py', url])
     python.stdout.on('data', (data) => {
         console.log(`data: ${data}`)
     })
