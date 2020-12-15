@@ -1,7 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-# Circular import below fails
-# import runProgram
 
 def runTitle():
     
@@ -26,7 +24,6 @@ def runTitle():
 
     return()
     # Want to give choice to user to restart program
-    #    runProgram.runChoice()
 
 def runLinks():
     url = input(f"Enter a website to scrape: \n")
@@ -40,4 +37,3 @@ def runLinks():
     
     return()
     # Want to give choice to user to restart program
-    # runProgram.runChoice()
