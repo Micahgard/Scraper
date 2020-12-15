@@ -1,11 +1,33 @@
-from bs4 import BeautifulSoup
-
 import requests
 import sys, getopt, time
+from bs4 import BeautifulSoup
+
+
+def runLinks(soup):
+    for a in soup.find_all('a', href=True):
+        print("Found the URL:", a['href'])
+
+    return()
+    # Want to give choice to user to restart program
+
+
+def runTitle(soup):
+    webTitle = soup.title
+    webMeta = soup.find_all('meta')
+
+    print("Website Title: ", webTitle)
+
+    for meta in webMeta:
+        if meta.has_attr('property'):
+            if meta['property'] == 'og:description':
+                print(meta)
+
+    return()
+    # Want to give choice to user to restart program
 
 def main(argv):
-    url = sys.argv[1]
-
+    url = sys.argv[1]        
+        #could potentially refactor variables to description over title as function pulls description
     try:
         scrapedSite = requests.get("http://" + url)
         time.sleep(3)
@@ -14,20 +36,12 @@ def main(argv):
         soup = BeautifulSoup(data, 'html.parser')
         time.sleep(3)
 
-        webTitle = soup.title
-        webMeta = soup.find_all('meta')
-
-        print("Website Title: ", webTitle)
-
-        for meta in webMeta:
-            if meta.has_attr('property'):
-                if meta['property'] == 'og:description':
-                    print(meta)
-        
+        runTitle(soup)
+        runLinks(soup)
     except getopt.GetoptError:
         sys.exit(2)
-    
-    print("\n...Finished Running Python")
 
+    print("\n...Finished Running Python")
+ 
 if __name__ == "__main__":
     main(sys.argv[1:])
