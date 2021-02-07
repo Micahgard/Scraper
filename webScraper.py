@@ -27,8 +27,13 @@ def runTitle(soup):
     # Want to give choice to user to restart program
 
 def runWhois(webUrl):
-    who = whois.whois(webUrl)
-    print(who)
+    try: 
+        whoInfo = whois.whois(webUrl)
+        print("WhoIs: \n")
+        print(whoInfo)
+    except:
+        "Error getting WhoIs Information \n"
+    
 
 def main(argv):
     url = sys.argv[1]        
