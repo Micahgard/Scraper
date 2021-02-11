@@ -1,4 +1,5 @@
 import requests
+import whois
 import sys, getopt, time
 from bs4 import BeautifulSoup
 
@@ -25,6 +26,15 @@ def runTitle(soup):
     return()
     # Want to give choice to user to restart program
 
+def runWhois(webUrl):
+    try: 
+        whoInfo = whois.whois(webUrl)
+        print("WhoIs: \n")
+        print(whoInfo)
+    except:
+        "Error getting WhoIs Information \n"
+    
+
 def main(argv):
     url = sys.argv[1]        
         #could potentially refactor variables to description over title as function pulls description
@@ -38,6 +48,7 @@ def main(argv):
 
         runTitle(soup)
         runLinks(soup)
+        runWhois(url)
     except getopt.GetoptError:
         sys.exit(2)
 

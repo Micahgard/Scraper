@@ -9,6 +9,7 @@ A tool that allows for the gathering of information from an inputted website
     svelte
     cors 
     express
+    pywhois
 
 # Setup
 
@@ -24,7 +25,7 @@ from within the webapp folder and then go to localhost.8000
 
 Output gathered data into a pdf via python 
 
-Gather dns information for the selected site
+~~Gather dns information for the selected site~~
 
 Pass information through to the frontend
 
